@@ -9,11 +9,16 @@ class WordDefProvider {
     List<Definition> worddef = [];
     final client = UrbanDictionary(client: OfficialUrbanDictionaryClient());
     //print(word);
-    await client.define(word).then((value) {
-      worddef = value;
-    });
-    worddef.sort((a, b) => a.thumbsUp.compareTo(b.thumbsUp));
-    return worddef;
+    if (word == 'slangonary') {
+      worddef = await client.random();
+      return worddef;
+    } else {
+      await client.define(word).then((value) {
+        worddef = value;
+      });
+      worddef.sort((a, b) => a.thumbsUp.compareTo(b.thumbsUp));
+      return worddef;
+    }
   }
 
   @override

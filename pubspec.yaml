@@ -32,6 +32,8 @@ dependencies:
   flutter_bloc: ^6.0.5
   urbandictionary: ^0.1.2
   owlbot_dart: ^1.1.1
+  action_process_text: ^0.0.5
+  modal_bottom_sheet: ^0.2.2
 
 dependency_overrides:
   meta: 1.1.8

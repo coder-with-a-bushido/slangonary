@@ -1,29 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:slanganory/Items/deftile.dart';
 import 'package:slanganory/bloc/findword_bloc.dart';
-import 'defpage.dart';
-import 'package:flutter/services.dart';
-import 'package:urbandictionary/urbandictionary.dart';
+import 'package:action_process_text/action_process_text.dart';
 
-class SearchPage extends StatelessWidget {
-  TextEditingController inputtext = TextEditingController();
+class SearchPage extends StatefulWidget {
   static String id = 'SearchPage';
-  static const platform = const MethodChannel('com.flutter.textselectaction');
-  SearchPage() {
-    platform.setMethodCallHandler(_handleMethod);
+
+  @override
+  _SearchPageState createState() => _SearchPageState();
+}
+
+class _SearchPageState extends State<SearchPage> {
+  TextEditingController inputtext = TextEditingController(text: '');
+  _SearchPageState() {
+    initActionProcessText();
   }
-  Future<dynamic> _handleMethod(MethodCall call) async {
-    switch (call.method) {
-      case "copiedText":
-        //print(call.arguments);
-        inputtext.text = call.arguments.toString();
-        return call.arguments;
-    }
+
+  Future<void> initActionProcessText() async {
+    inputtext.text = await ActionProcessText.getInputText;
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    print(inputtext.text);
+    // print(inputtext.text);
     BlocProvider.of<FindwordBloc>(context)
         .add(SearchWord(word: inputtext.text, choice: 1));
     return Scaffold(
@@ -41,7 +42,7 @@ class SearchPage extends StatelessWidget {
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10))),
                 onChanged: (value) => BlocProvider.of<FindwordBloc>(context)
-                    .add(SearchWord(word: value, choice: 1)),
+                    .add(SearchWord(word: value ?? 'slangonary', choice: 1)),
               ),
             ),
             Expanded(
@@ -70,19 +71,10 @@ class SearchPage extends StatelessWidget {
                                     itemCount: snapshot.data.length,
                                     itemBuilder:
                                         (BuildContext ctxt, int index) {
-                                      return ListTile(
-                                        title: Text(snapshot.data[index].word),
-                                        subtitle: Text(
-                                            snapshot.data[index].definition),
-                                        enabled: true,
-                                        contentPadding: EdgeInsets.all(10),
-                                        onTap: () {
-                                          Navigator.pushNamed(
-                                              context, DefPage.id,
-                                              arguments: WordDeftoDefPage(
-                                                  wordres:
-                                                      snapshot.data[index]));
-                                        },
+                                      return DefTile(
+                                        // index: index,
+                                        // snapshot: snapshot,
+                                        data: snapshot.data[index],
                                       );
                                     }),
                               );
