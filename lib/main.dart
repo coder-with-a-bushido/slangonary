@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.amber,
         scaffoldBackgroundColor: Color(0xFFF4E3CB),
       ),
-      home: SearchPage(),
+      home: MainPage(),
       routes: {
         MainPage.id: (context) => MainPage(),
         SearchPage.id: (context) => SearchPage(),

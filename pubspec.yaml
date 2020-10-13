@@ -35,8 +35,8 @@ dependencies:
   action_process_text: ^0.0.5
   modal_bottom_sheet: ^0.2.2
 
-dependency_overrides:
-  meta: 1.1.8
+# dependency_overrides:
+#   meta: 1.1.8
 
 
 dev_dependencies:
