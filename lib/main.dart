@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/findword_bloc.dart';
-import 'screens/defpage.dart';
 import 'screens/mainpage.dart';
 import 'Items/searchpage.dart';
 import 'providers/worddefprovider.dart';

@@ -28,20 +28,32 @@ class _SearchPageState extends State<SliverSearchBar> {
     BlocProvider.of<FindwordBloc>(context)
         .add(SearchWord(word: inputtext.text, choice: 1));
     return SliverAppBar(
-      title: Container(
-        color: Colors.transparent,
-        padding: EdgeInsets.all(20),
-        child: TextField(
-          controller: inputtext,
-          decoration: InputDecoration(
-              fillColor: Colors.white,
+      backgroundColor: Colors.transparent,
+      title: ClipRRect(
+        borderRadius: BorderRadius.circular(50),
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 15),
+          color: Colors.white,
+          child: TextField(
+            controller: inputtext,
+            decoration: InputDecoration(
               hintText: 'What do you wanna know?',
-              border:
-                  OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
-          onChanged: (value) => BlocProvider.of<FindwordBloc>(context)
-              .add(SearchWord(word: value ?? 'slangonary', choice: 1)),
+            ),
+            onChanged: (value) => BlocProvider.of<FindwordBloc>(context)
+                .add(SearchWord(word: value ?? 'slangonary', choice: 1)),
+          ),
         ),
       ),
+      actions: [
+        IconButton(
+          icon: Icon(Icons.search),
+          onPressed: () => BlocProvider.of<FindwordBloc>(context)
+              .add(SearchWord(word: inputtext.text ?? 'slangonary', choice: 1)),
+        )
+      ],
+      floating: true,
+      snap: true,
+      elevation: 0.0,
     );
   }
 }
