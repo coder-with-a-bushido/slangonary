@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/findword_bloc.dart';
 import 'screens/defpage.dart';
 import 'screens/mainpage.dart';
-import 'screens/searchpage.dart';
+import 'Items/searchpage.dart';
 import 'providers/worddefprovider.dart';
 
 void main() {
@@ -23,11 +23,11 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Color(0xFFF4E3CB),
       ),
       home: MainPage(),
-      routes: {
-        MainPage.id: (context) => MainPage(),
-        SearchPage.id: (context) => SearchPage(),
-        DefPage.id: (context) => DefPage()
-      },
+      // routes: {
+      //   MainPage.id: (context) => MainPage(),
+      //   SearchPage.id: (context) => SearchPage(),
+      //   DefPage.id: (context) => DefPage()
+      // },
     );
   }
 }

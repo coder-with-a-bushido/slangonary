@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:slanganory/Items/displaydef.dart';
 import 'package:slanganory/Items/paperdetails.dart';
-import 'package:slanganory/screens/searchpage.dart';
+import 'package:slanganory/Items/searchpage.dart';
 
 TextEditingController searchtext = TextEditingController(text: '');
 
@@ -14,7 +15,8 @@ class MainPage extends StatelessWidget {
           child: CustomScrollView(
             slivers: <Widget>[
               PaperDetails(),
-              SearchPage(),
+              SliverSearchBar(),
+              DisplayDef(),
             ],
           ),
         ));
