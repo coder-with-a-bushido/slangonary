@@ -47,7 +47,7 @@ class DisplayDef extends StatelessWidget {
                                   ? Colors.black87
                                   : Colors.black54,
                             ),
-                            SizedBox(height: 10)
+                            //SizedBox(height: 10)
                           ],
                         );
                       },

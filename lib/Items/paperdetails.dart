@@ -10,6 +10,8 @@ class PaperDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String quotetext = Quotes.getRandom().content;
+    String openquotesymbol = "❝";
+    String endquotesymbol = "❞";
     //var now = new DateTime.now();
     //var nowparse = DateTime.parse(now);
     return SliverList(
@@ -70,10 +72,20 @@ class PaperDetails extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.all(20.0),
               //color: Color(0xFFECDDCA),
-              child: Text(
-                "❝ $quotetext ❞",
-                style: TextStyle(
-                    decorationColor: Colors.white, decorationThickness: 2.0),
+              child: RichText(
+                text: TextSpan(
+                    text: "$openquotesymbol",
+                    style: TextStyle(fontSize: 20, color: Colors.black),
+                    children: <TextSpan>[
+                      TextSpan(
+                        text: "$quotetext",
+                        style: TextStyle(fontSize: 15, color: Colors.black),
+                      ),
+                      TextSpan(
+                        text: "$endquotesymbol",
+                        style: TextStyle(fontSize: 20, color: Colors.black),
+                      )
+                    ]),
                 textAlign: TextAlign.center,
               ),
             ),
