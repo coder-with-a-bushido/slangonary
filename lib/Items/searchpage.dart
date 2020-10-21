@@ -28,28 +28,54 @@ class _SearchPageState extends State<SliverSearchBar> {
     BlocProvider.of<FindwordBloc>(context)
         .add(SearchWord(word: inputtext.text, choice: 1));
     return SliverAppBar(
+      automaticallyImplyLeading: false,
       backgroundColor: Colors.transparent,
-      title: ClipRRect(
-        borderRadius: BorderRadius.circular(50),
-        child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 15),
-          color: Colors.white,
-          child: TextField(
-            controller: inputtext,
-            decoration: InputDecoration(
-              hintText: 'What do you wanna know?',
+      title: Column(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(50),
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 15),
+              color: Colors.white,
+              child: TextField(
+                controller: inputtext,
+                decoration: InputDecoration(
+                  hintText: 'What do you wanna know?',
+                ),
+                onChanged: (value) => BlocProvider.of<FindwordBloc>(context)
+                    .add(SearchWord(word: value ?? 'slangonary', choice: 1)),
+              ),
             ),
-            onChanged: (value) => BlocProvider.of<FindwordBloc>(context)
-                .add(SearchWord(word: value ?? 'slangonary', choice: 1)),
           ),
-        ),
+          SizedBox(
+            height: 10,
+          )
+        ],
       ),
       actions: [
-        IconButton(
-          icon: Icon(Icons.search),
-          onPressed: () => BlocProvider.of<FindwordBloc>(context)
-              .add(SearchWord(word: inputtext.text ?? 'slangonary', choice: 1)),
-        )
+        Padding(
+          padding: const EdgeInsets.only(bottom: 10, right: 6),
+          child: ClipOval(
+            child: Material(
+              color: Color(0xFFCE8151), // button color
+              child: Column(
+                children: [
+                  InkWell(
+                    splashColor: Color(0xFFB95334), // inkwell color
+                    child: SizedBox(
+                        width: 46, height: 46, child: Icon(Icons.search)),
+                    onTap: () => BlocProvider.of<FindwordBloc>(context).add(
+                        SearchWord(
+                            word: inputtext.text ?? 'slangonary', choice: 1)),
+                  ),
+                  // SizedBox(
+                  //   height: 10,
+                  // )
+                ],
+              ),
+            ),
+          ),
+        ),
       ],
       floating: true,
       snap: true,

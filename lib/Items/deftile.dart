@@ -3,55 +3,100 @@ import 'package:flutter/material.dart';
 import 'package:stopper/stopper.dart';
 
 class DefTile extends StatelessWidget {
-  const DefTile({this.data});
+  const DefTile({this.data, this.tilecolor, this.textcolor});
   // final AsyncSnapshot<dynamic> snapshot;
   // final int index;
   final dynamic data;
+  final Color tilecolor;
+  final Color textcolor;
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
+    final height =
+        MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top;
 
-    return ListTile(
-      title: Text(data.word),
-      subtitle: Text(data.definition),
-      enabled: true,
-      contentPadding: EdgeInsets.all(10),
-      onTap: () {
-        showStopper(
-            context: context,
-            builder: (context, scrollController, scrollPhysics, stop) {
-              return SafeArea(
-                child: Container(
-                  color: Color(0xFFECDDCA),
-                  child: CustomScrollView(
-                    slivers: [
-                      SliverAppBar(
-                        backgroundColor: Color(0xFFECDDCA),
-                        leading: Icon(Icons.arrow_back_ios),
-                        title: Text(
-                          data.word,
-                        ),
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(10),
+      child: Container(
+        child: ListTile(
+          tileColor: tilecolor,
+          title: Text(
+            data.word,
+            style: TextStyle(
+                color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold),
+          ),
+          subtitle: Text(
+            data.definition,
+            style: TextStyle(color: textcolor),
+          ),
+          enabled: true,
+          contentPadding: EdgeInsets.all(10),
+          onTap: () {
+            showStopper(
+                context: context,
+                builder: (context, scrollController, scrollPhysics, stop) {
+                  return SafeArea(
+                    child: Container(
+                      color: Color(0xFFCE8151),
+                      //padding: EdgeInsets.all(10),
+                      // decoration: BoxDecoration(
+                      //     image: DecorationImage(
+                      //         image: AssetImage("images/bg.jpg"),
+                      //         fit: BoxFit.cover)),
+                      child: CustomScrollView(
+                        slivers: [
+                          SliverAppBar(
+                            automaticallyImplyLeading: false,
+                            backgroundColor: Color(0xFFB95334),
+                            title: Text(
+                              data.word,
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                          SliverList(
+                            delegate: SliverChildListDelegate(
+                              [
+                                Padding(
+                                  padding: const EdgeInsets.all(10),
+                                  child: Column(
+                                    textDirection: TextDirection.ltr,
+                                    children: [
+                                      Text("\n"),
+                                      Text(
+                                        "Definition:\n",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 20),
+                                      ),
+                                      Text(data.definition + "\n"),
+                                      Text(
+                                        "Example:\n",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 20),
+                                      ),
+                                      Text(data.example),
+                                    ],
+                                  ),
+                                ),
+                                //Text(wordres.author),
+                              ],
+                            ),
+                          ),
+                          // }),
+                        ],
+                        controller: scrollController,
+                        physics: scrollPhysics,
                       ),
-                      SliverList(
-                        delegate: SliverChildListDelegate([
-                          //Text(wordres.soundsUrls),
-                          Text(data.definition),
-                          Text(data.example),
-                          //Text(wordres.author),
-                        ]),
-                      )
-                    ],
-                    controller: scrollController,
-                    physics: scrollPhysics,
-                  ),
-                ),
-              );
-            },
-            stops: [0.5 * height, height]);
-        // Navigator.pushNamed(context, DefPage.id,
-        //     arguments: WordDeftoDefPage(wordres: data));
-      },
+                    ),
+                  );
+                },
+                stops: [0.5 * height, height]);
+            // Navigator.pushNamed(context, DefPage.id,
+            //     arguments: WordDeftoDefPage(wordres: data));
+          },
+        ),
+      ),
     );
   }
 }

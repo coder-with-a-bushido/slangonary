@@ -34,10 +34,21 @@ class DisplayDef extends StatelessWidget {
                   return SliverList(
                     delegate: SliverChildBuilderDelegate(
                       (BuildContext ctxt, int index) {
-                        return DefTile(
-                          // index: index,
-                          // snapshot: snapshot,
-                          data: snapshot.data[index],
+                        return Column(
+                          children: [
+                            DefTile(
+                              // index: index,
+                              // snapshot: snapshot,
+                              data: snapshot.data[index],
+                              tilecolor: index % 2 == 0
+                                  ? Color(0xFFB95334)
+                                  : Color(0xFFCE8151),
+                              textcolor: index % 2 == 0
+                                  ? Colors.black87
+                                  : Colors.black54,
+                            ),
+                            SizedBox(height: 10)
+                          ],
                         );
                       },
                       childCount: snapshot.data.length,
