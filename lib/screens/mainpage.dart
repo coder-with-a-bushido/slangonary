@@ -9,23 +9,24 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomPadding: false,
         body: SafeArea(
-      child: Stack(
-        fit: StackFit.expand,
-        children: [
-          Image.asset(
-            "images/bg.jpg",
-            fit: BoxFit.cover,
-          ),
-          CustomScrollView(
-            slivers: <Widget>[
-              PaperDetails(),
-              SliverSearchBar(),
-              DisplayDef(),
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              Image.asset(
+                "images/bg.jpg",
+                fit: BoxFit.cover,
+              ),
+              CustomScrollView(
+                slivers: <Widget>[
+                  PaperDetails(),
+                  SliverSearchBar(),
+                  DisplayDef(),
+                ],
+              ),
             ],
           ),
-        ],
-      ),
-    ));
+        ));
   }
 }
