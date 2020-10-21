@@ -8,4 +8,4 @@ A Flutter app alternative for giving slang definitions based on the Urban Dictio
 * Pub package [action_process_text](https://pub.dev/packages/action_process_text) has been used for achieving ACTION_PROCESS_TEXT intent on android platform.
 * Bloc has been used for the state management.
 ## Demo 
-<img src="https://i.imgur.com/VKEaX6L.gif">
+<img src="https://i.imgur.com/VKEaX6L.gif" height=444 width=250>
