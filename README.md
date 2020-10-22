@@ -1,6 +1,6 @@
 # Slanganory
 
-A Flutter app alternative for giving slang definitions based on the Urban Dictionary.
+A Flutter app for searching slang definitions from the Urban Dictionary.
 
 ## Architecture
 * The dictionary definition calls are handled through repositories, so that the source can easily be swapped.
